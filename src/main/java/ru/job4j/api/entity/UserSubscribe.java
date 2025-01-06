@@ -7,7 +7,7 @@ import lombok.Setter;
 /** Подписка пользователя */
 @Getter
 @Setter
-@Entity(name = "ru.job4j.api.entity.UserFriend")
+@Entity(name = "ru.job4j.api.entity.UserSubscribe")
 @Table(schema = "public", name = "USER_SUBSCRIBE")
 public class UserSubscribe {
 

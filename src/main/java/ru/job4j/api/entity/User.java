@@ -10,7 +10,7 @@ import java.util.Date;
 /** Пользователь */
 @Getter
 @Setter
-@Entity(name = "ru.job4j.api.entity.UserAuth")
+@Entity(name = "ru.job4j.api.entity.User")
 @Table(schema = "public", name = "USER_AUTH")
 public class User {
 

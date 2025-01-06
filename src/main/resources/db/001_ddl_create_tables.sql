@@ -86,7 +86,7 @@ create table if not exists user_friend_request
   id             serial primary key,
   user_id        integer references user_auth (id)                                        not null,
   friend_user_id integer references user_auth (id)                                        not null,
-  status         varchar(1) default 'A' check (status in ('NEW', 'ACCEPTED', 'DECLINED')) not null,
+  status         varchar(16) default 'A' check (status in ('NEW', 'ACCEPTED', 'DECLINED')) not null,
   create_date    date       default now()                                                 not null
 );
 
