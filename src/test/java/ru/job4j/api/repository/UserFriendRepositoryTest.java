@@ -61,4 +61,29 @@ class UserFriendRepositoryTest {
         var friends = userFriendRepository.findAll();
         assertThat(friends).hasSize(1);
     }
+
+    @Test
+    public void whenFindByUserId() {
+        var user = new User();
+        user.setLogin("John Doe");
+        user.setEmail("john.doe@example.com");
+        user.setPassword("******");
+        user.setStatus(Statuses.A);
+        userRepository.save(user);
+
+        var friend = new User();
+        friend.setLogin("Jane Doe");
+        friend.setEmail("jane.doe@example.com");
+        friend.setPassword("******");
+        friend.setStatus(Statuses.A);
+        userRepository.save(friend);
+
+        var userFriend = new UserFriend();
+        userFriend.setUserId(user.getId());
+        userFriend.setFriendUserId(friend.getId());
+        userFriendRepository.save(userFriend);
+
+        var friends = userFriendRepository.findByUserId(user.getId());
+        assertThat(friends).hasSize(1);
+    }
 }

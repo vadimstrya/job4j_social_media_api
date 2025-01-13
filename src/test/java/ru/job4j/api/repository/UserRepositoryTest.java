@@ -66,4 +66,18 @@ class UserRepositoryTest {
         assertThat(users).hasSize(2);
         assertThat(users).extracting(User::getLogin).contains("John Doe", "Jane Doe");
     }
+
+    @Test
+    public void whenFindByLoginAndPasswordThenExists() {
+        var user = new User();
+        user.setLogin("John Doe");
+        user.setEmail("john.doe@example.com");
+        user.setPassword("******");
+        user.setStatus(Statuses.A);
+        userRepository.save(user);
+
+        var foundUser = userRepository.findByLoginAndPassword("John Doe", "******");
+        assertThat(foundUser).isPresent();
+        assertThat(user.getId()).isEqualTo(foundUser.get().getId());
+    }
 }

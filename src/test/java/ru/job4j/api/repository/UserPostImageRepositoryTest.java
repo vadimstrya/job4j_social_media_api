@@ -63,8 +63,38 @@ class UserPostImageRepositoryTest {
         var userPostImage = new UserPostImage();
         userPostImage.setPostId(userPost.getId());
         userPostImage.setContent("abc".getBytes(StandardCharsets.UTF_8));
+        userPostImageRepository.save(userPostImage);
 
-        var images = userPostRepository.findAll();
+        var images = userPostImageRepository.findAll();
         assertThat(images).hasSize(1);
+    }
+
+    @Test
+    public void whenDeleteByPostId() {
+        var user = new User();
+        user.setLogin("John Doe");
+        user.setEmail("john.doe@example.com");
+        user.setPassword("******");
+        user.setStatus(Statuses.A);
+        userRepository.save(user);
+
+        var userPost = new UserPost();
+        userPost.setUserId(user.getId());
+        userPost.setTitle("Заголовок");
+        userPost.setText("Текст");
+        userPost.setStatus(Statuses.A);
+        userPostRepository.save(userPost);
+
+        var userPostImage = new UserPostImage();
+        userPostImage.setPostId(userPost.getId());
+        userPostImage.setContent("abc".getBytes(StandardCharsets.UTF_8));
+        userPostImageRepository.save(userPostImage);
+
+        var images = userPostImageRepository.findAll();
+        assertThat(images).hasSize(1);
+
+        userPostImageRepository.deleteByPostId(userPost.getId());
+        images = userPostImageRepository.findAll();
+        assertThat(images).isEmpty();
     }
 }
