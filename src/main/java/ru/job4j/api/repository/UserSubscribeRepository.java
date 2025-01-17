@@ -11,4 +11,6 @@ public interface UserSubscribeRepository extends ListCrudRepository<UserSubscrib
 
     @Query("select s from ru.job4j.api.entity.UserSubscribe s where s.userId = :userId")
     List<UserSubscribe> findByUserId(Long userId);
+
+    void deleteByUserIdAndSubscribeUserId(Long userId, Long subscribeUserId);
 }

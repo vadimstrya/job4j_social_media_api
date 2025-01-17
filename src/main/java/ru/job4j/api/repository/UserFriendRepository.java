@@ -11,4 +11,6 @@ public interface UserFriendRepository extends ListCrudRepository<UserFriend, Lon
 
     @Query("select f from ru.job4j.api.entity.UserFriend f where f.userId = :userId")
     List<UserFriend> findByUserId(Long userId);
+
+    void deleteByUserIdAndFriendUserId(Long userId, Long friendUserId);
 }
