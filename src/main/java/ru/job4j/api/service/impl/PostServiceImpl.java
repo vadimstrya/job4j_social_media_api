@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.job4j.api.dto.request.post.UserPostCreateRequest;
 import ru.job4j.api.dto.request.post.UserPostImageUpdateRequest;
 import ru.job4j.api.dto.request.post.UserPostUpdateRequest;
+import ru.job4j.api.entity.User;
 import ru.job4j.api.entity.UserPost;
 import ru.job4j.api.entity.UserPostImage;
 import ru.job4j.api.enums.Statuses;
@@ -64,6 +65,39 @@ public class PostServiceImpl implements PostService {
             userPostRepository.save(p);
         });
 
+    }
+
+    @Override
+    public Optional<UserPost> getById(Long postId) {
+        return userPostRepository.findById(postId);
+    }
+
+    @Override
+    public UserPost create(UserPost post) {
+        post.setStatus(Statuses.A);
+        return userPostRepository.save(post);
+    }
+
+    @Override
+    public boolean update(UserPost post) {
+        Optional<UserPost> foundPost = userPostRepository.findById(post.getId());
+        if (foundPost.isPresent()) {
+            userPostRepository.save(post);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteById(Long postId) {
+        Optional<UserPost> foundPost = userPostRepository.findById(postId);
+        if (foundPost.isPresent()) {
+            UserPost post = foundPost.get();
+            post.setStatus(Statuses.D);
+            userPostRepository.save(post);
+            return true;
+        }
+        return false;
     }
 
     private UserPost createPost(UserPostCreateRequest request) {
