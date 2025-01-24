@@ -216,7 +216,7 @@ class UserPostRepositoryTest {
 
         var subscribe1 = new User();
         subscribe1.setLogin("Jane Doe");
-        subscribe1.setEmail("jane.doe@example.com");
+        subscribe1.setEmail("jane.doe2@example.com");
         subscribe1.setPassword("******");
         subscribe1.setStatus(Statuses.A);
         userRepository.save(subscribe1);
@@ -228,7 +228,7 @@ class UserPostRepositoryTest {
 
         var subscribe2 = new User();
         subscribe2.setLogin("Jane Doe");
-        subscribe2.setEmail("jane.doe@example.com");
+        subscribe2.setEmail("jane.doe3@example.com");
         subscribe2.setPassword("******");
         subscribe2.setStatus(Statuses.A);
         userRepository.save(subscribe2);
