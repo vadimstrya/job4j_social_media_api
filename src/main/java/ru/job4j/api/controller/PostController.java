@@ -5,8 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.job4j.api.dto.PostDto;
 import ru.job4j.api.entity.UserPost;
 import ru.job4j.api.service.PostService;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,7 +39,6 @@ public class PostController {
     }
 
     @PutMapping
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Void> update(@RequestBody UserPost post) {
         if (postService.update(post)) {
             return ResponseEntity.ok().build();
@@ -45,11 +47,15 @@ public class PostController {
     }
 
     @DeleteMapping("/{postId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> delete(@PathVariable Long postId) {
         if (postService.deleteById(postId)) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/getPosts")
+    public List<PostDto> getPosts(@RequestBody List<Long> userIdList) {
+        return postService.getPosts(userIdList);
     }
 }

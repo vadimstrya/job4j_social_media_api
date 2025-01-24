@@ -4,23 +4,29 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.job4j.api.dto.PostDto;
 import ru.job4j.api.dto.request.post.UserPostCreateRequest;
 import ru.job4j.api.dto.request.post.UserPostImageUpdateRequest;
 import ru.job4j.api.dto.request.post.UserPostUpdateRequest;
-import ru.job4j.api.entity.User;
 import ru.job4j.api.entity.UserPost;
 import ru.job4j.api.entity.UserPostImage;
 import ru.job4j.api.enums.Statuses;
+import ru.job4j.api.mapper.PostMapper;
 import ru.job4j.api.repository.UserPostImageRepository;
 import ru.job4j.api.repository.UserPostRepository;
+import ru.job4j.api.repository.UserRepository;
 import ru.job4j.api.service.PostService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
 
+    private final PostMapper postMapper;
+    private final UserRepository userRepository;
     private final UserPostRepository userPostRepository;
     private final UserPostImageRepository userPostImageRepository;
 
@@ -98,6 +104,20 @@ public class PostServiceImpl implements PostService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<PostDto> getPosts(List<Long> userIdList) {
+        List<PostDto> result = new ArrayList<>();
+
+        for (Long userId : userIdList) {
+            userRepository.findById(userId).ifPresent(user -> {
+                List<UserPost> posts = userPostRepository.findByUserIdAndStatus(user.getId(), Statuses.A);
+                PostDto postDto = postMapper.convert(user, posts);
+                result.add(postDto);
+            });
+        }
+        return result;
     }
 
     private UserPost createPost(UserPostCreateRequest request) {
