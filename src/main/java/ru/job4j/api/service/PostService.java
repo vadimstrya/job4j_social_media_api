@@ -1,6 +1,6 @@
 package ru.job4j.api.service;
 
-import ru.job4j.api.dto.PostDto;
+import ru.job4j.api.dto.response.PostDto;
 import ru.job4j.api.dto.request.post.UserPostCreateRequest;
 import ru.job4j.api.dto.request.post.UserPostImageUpdateRequest;
 import ru.job4j.api.dto.request.post.UserPostUpdateRequest;

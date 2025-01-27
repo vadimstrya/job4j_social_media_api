@@ -1,6 +1,8 @@
 package ru.job4j.api.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import ru.job4j.api.enums.Statuses;
 
 import lombok.Getter;
@@ -22,14 +24,17 @@ public class UserPost {
     private Long id;
 
     /** Ид пользователя, ссылка на user_auth (id) */
+    @NotNull
     @Column(name = "user_id")
     private Long userId;
 
     /** Заголовок */
+    @NotBlank
     @Column(name = "title")
     private String title;
 
     /** Текст поста */
+    @NotBlank
     @Column(name = "text")
     private String text;
 

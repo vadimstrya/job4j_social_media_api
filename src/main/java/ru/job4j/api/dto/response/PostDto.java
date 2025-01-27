@@ -1,4 +1,4 @@
-package ru.job4j.api.dto;
+package ru.job4j.api.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;

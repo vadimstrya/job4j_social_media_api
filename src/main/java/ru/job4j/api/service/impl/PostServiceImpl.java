@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.job4j.api.dto.PostDto;
+import ru.job4j.api.dto.response.PostDto;
 import ru.job4j.api.dto.request.post.UserPostCreateRequest;
 import ru.job4j.api.dto.request.post.UserPostImageUpdateRequest;
 import ru.job4j.api.dto.request.post.UserPostUpdateRequest;

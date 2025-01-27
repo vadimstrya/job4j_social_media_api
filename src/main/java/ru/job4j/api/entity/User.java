@@ -1,6 +1,8 @@
 package ru.job4j.api.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import ru.job4j.api.enums.Statuses;
@@ -21,14 +23,18 @@ public class User {
     private Long id;
 
     /** Имя */
+    @NotBlank
     @Column(name = "login")
     private String login;
 
     /** Email */
+    @NotBlank
+    @Email
     @Column(name = "email")
     private String email;
 
     /** Пароль */
+    @NotBlank
     @Column(name = "password")
     private String password;
 

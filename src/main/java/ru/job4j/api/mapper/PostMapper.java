@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
-import ru.job4j.api.dto.PostDto;
+import ru.job4j.api.dto.response.PostDto;
 import ru.job4j.api.entity.User;
 import ru.job4j.api.entity.UserPost;
 
