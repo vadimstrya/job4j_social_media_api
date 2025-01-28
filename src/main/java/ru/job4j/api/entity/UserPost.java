@@ -1,5 +1,6 @@
 package ru.job4j.api.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,6 +14,7 @@ import java.util.Date;
 /** Пост пользователя */
 @Getter
 @Setter
+@Schema(description = "UserPost Model Information")
 @Entity(name = "ru.job4j.api.entity.UserPost")
 @Table(schema = "public", name = "USER_POST")
 public class UserPost {

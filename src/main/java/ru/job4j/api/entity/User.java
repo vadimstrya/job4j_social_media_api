@@ -1,5 +1,6 @@
 package ru.job4j.api.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -12,6 +13,7 @@ import java.util.Date;
 /** Пользователь */
 @Getter
 @Setter
+@Schema(description = "User Model Information")
 @Entity(name = "ru.job4j.api.entity.User")
 @Table(schema = "public", name = "USER_AUTH")
 public class User {
